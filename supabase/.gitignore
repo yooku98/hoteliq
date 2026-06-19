@@ -1,4 +1,11 @@
 .branches
 .temp
 .env
+.env.*
+!.env.example
 functions/.env
+functions/**/.env
+functions/.env.*
+functions/**/.env.*
+!functions/.env.example
+!functions/**/.env.example
