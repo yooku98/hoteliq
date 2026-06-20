@@ -22,9 +22,10 @@ const initialForm = {
   check_out_date: '',
   total_amount: '',
   payment_method: 'cash',
+  corporate_client_id: '',
 }
 
-export default function QuickBookingForm({ hotelId, rooms, onCreated, onUpdateRoomStatus }) {
+export default function QuickBookingForm({ hotelId, rooms, corporateClients = [], onCreated, onUpdateRoomStatus }) {
   const [form, setForm] = useState(initialForm)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
@@ -52,10 +53,11 @@ export default function QuickBookingForm({ hotelId, rooms, onCreated, onUpdateRo
       check_in_date: form.check_in_date,
       check_out_date: form.check_out_date,
       status: 'checked_in',
-      source: 'walk_in',
+      source: form.corporate_client_id ? 'corporate' : 'walk_in',
       total_amount: Number(form.total_amount) || 0,
       amount_paid: Number(form.total_amount) || 0,
       payment_method: form.payment_method,
+      corporate_client_id: form.corporate_client_id || null,
     })
     setSubmitting(false)
 
@@ -107,6 +109,24 @@ export default function QuickBookingForm({ hotelId, rooms, onCreated, onUpdateRo
             ))}
           </select>
         </Field>
+
+        {corporateClients.length > 0 && (
+          <Field label="Corporate / group client (optional)">
+            <select
+              value={form.corporate_client_id}
+              onChange={(e) => update('corporate_client_id', e.target.value)}
+              className="input"
+            >
+              <option value="">None — individual guest</option>
+              {corporateClients.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.company_name}
+                  {c.purpose ? ` — ${c.purpose}` : ''}
+                </option>
+              ))}
+            </select>
+          </Field>
+        )}
 
         <div className="grid grid-cols-2 gap-3">
           <Field label="Check-in">

@@ -1,4 +1,5 @@
-import { Panel, Badge } from '../ui/Panel'
+import { Disclosure } from '../ui/Disclosure'
+import { Badge } from '../ui/Panel'
 
 function GuestRow({ booking }) {
   return (
@@ -17,7 +18,7 @@ function GuestRow({ booking }) {
 export default function ArrivalsDepartures({ arrivals, departures, loading }) {
   return (
     <div className="grid grid-cols-2 gap-4">
-      <Panel title="Today's arrivals" badge={<Badge tone="teal">{arrivals.length}</Badge>}>
+      <Disclosure title="Today's arrivals" badge={<Badge tone="teal">{arrivals.length}</Badge>}>
         {loading ? (
           <div className="text-ink3 text-sm py-4 text-center">Loading…</div>
         ) : arrivals.length === 0 ? (
@@ -25,8 +26,8 @@ export default function ArrivalsDepartures({ arrivals, departures, loading }) {
         ) : (
           arrivals.map((b) => <GuestRow key={b.id} booking={b} />)
         )}
-      </Panel>
-      <Panel title="Today's departures" badge={<Badge tone="gold">{departures.length}</Badge>}>
+      </Disclosure>
+      <Disclosure title="Today's departures" badge={<Badge tone="gold">{departures.length}</Badge>}>
         {loading ? (
           <div className="text-ink3 text-sm py-4 text-center">Loading…</div>
         ) : departures.length === 0 ? (
@@ -34,7 +35,7 @@ export default function ArrivalsDepartures({ arrivals, departures, loading }) {
         ) : (
           departures.map((b) => <GuestRow key={b.id} booking={b} />)
         )}
-      </Panel>
+      </Disclosure>
     </div>
   )
 }

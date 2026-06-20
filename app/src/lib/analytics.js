@@ -1,7 +1,7 @@
 import { dateRange } from './dateUtils'
 
 const PAYMENT_METHODS = ['cash', 'momo_mtn', 'momo_vodafone', 'momo_airteltigo', 'card']
-const BOOKING_SOURCES = ['walk_in', 'phone', 'booking_com', 'expedia', 'direct']
+const BOOKING_SOURCES = ['walk_in', 'phone', 'booking_com', 'expedia', 'direct', 'corporate']
 
 // Revenue is attributed to a booking's check-in date — a deliberate
 // simplification since there's no separate payments ledger in v1.

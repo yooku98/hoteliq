@@ -1,5 +1,6 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { Panel, Badge } from '../ui/Panel'
+import { Badge } from '../ui/Panel'
+import { ExpandablePanel } from '../ui/ExpandablePanel'
 
 const METHOD_COLORS = {
   cash: '#B8860B',
@@ -30,44 +31,46 @@ export default function RevenueChart({ series, loading }) {
   const data = series.map((d) => ({ date: d.date, ...d.revenueByMethod }))
 
   return (
-    <Panel title="Revenue trend — last 30 days" badge={<Badge tone="gold">By payment method</Badge>}>
-      {loading ? (
-        <div className="text-ink3 text-sm py-12 text-center">Loading…</div>
-      ) : (
-        <div className="h-[220px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data} margin={{ top: 4, right: 4, left: -10, bottom: 0 }}>
-              <CartesianGrid vertical={false} stroke="#E8E4DC" />
-              <XAxis
-                dataKey="date"
-                tickFormatter={formatDay}
-                tick={{ fontSize: 10, fill: '#7A7A7A' }}
-                axisLine={false}
-                tickLine={false}
-                interval={2}
-              />
-              <YAxis
-                tick={{ fontSize: 10, fill: '#7A7A7A' }}
-                axisLine={false}
-                tickLine={false}
-                tickFormatter={(v) => `₵${Math.round(v / 1000)}k`}
-              />
-              <Tooltip
-                formatter={(value, name) => [money(value), METHOD_LABEL[name]]}
-                labelFormatter={formatDay}
-                contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #E8E4DC' }}
-              />
-              <Legend
-                formatter={(value) => METHOD_LABEL[value]}
-                wrapperStyle={{ fontSize: 11 }}
-              />
-              {Object.keys(METHOD_COLORS).map((method) => (
-                <Bar key={method} dataKey={method} stackId="rev" fill={METHOD_COLORS[method]} />
-              ))}
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      )}
-    </Panel>
+    <ExpandablePanel title="Revenue trend — last 30 days" badge={<Badge tone="gold">By payment method</Badge>}>
+      {(expanded) =>
+        loading ? (
+          <div className="text-ink3 text-sm py-12 text-center">Loading…</div>
+        ) : (
+          <div className={expanded ? 'h-[440px]' : 'h-[220px]'}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={data} margin={{ top: 4, right: 4, left: -10, bottom: 0 }}>
+                <CartesianGrid vertical={false} stroke="#E8E4DC" />
+                <XAxis
+                  dataKey="date"
+                  tickFormatter={formatDay}
+                  tick={{ fontSize: 10, fill: '#7A7A7A' }}
+                  axisLine={false}
+                  tickLine={false}
+                  interval={expanded ? 0 : 2}
+                />
+                <YAxis
+                  tick={{ fontSize: 10, fill: '#7A7A7A' }}
+                  axisLine={false}
+                  tickLine={false}
+                  tickFormatter={(v) => `₵${Math.round(v / 1000)}k`}
+                />
+                <Tooltip
+                  formatter={(value, name) => [money(value), METHOD_LABEL[name]]}
+                  labelFormatter={formatDay}
+                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #E8E4DC' }}
+                />
+                <Legend
+                  formatter={(value) => METHOD_LABEL[value]}
+                  wrapperStyle={{ fontSize: 11 }}
+                />
+                {Object.keys(METHOD_COLORS).map((method) => (
+                  <Bar key={method} dataKey={method} stackId="rev" fill={METHOD_COLORS[method]} />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )
+      }
+    </ExpandablePanel>
   )
 }

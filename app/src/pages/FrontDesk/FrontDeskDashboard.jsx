@@ -3,6 +3,7 @@ import { useRooms } from '../../hooks/useRooms'
 import { useTodayBookings } from '../../hooks/useBookings'
 import { useShiftHandovers } from '../../hooks/useShiftHandovers'
 import { useMaintenanceTickets } from '../../hooks/useMaintenanceTickets'
+import { useCorporateClients } from '../../hooks/useCorporateClients'
 import ArrivalsDepartures from '../../components/frontdesk/ArrivalsDepartures'
 import RoomGrid from '../../components/frontdesk/RoomGrid'
 import QuickBookingForm from '../../components/frontdesk/QuickBookingForm'
@@ -14,6 +15,8 @@ export default function FrontDeskDashboard() {
   const { arrivals, departures, loading: bookingsLoading, refetch: refetchBookings } = useTodayBookings(hotel?.id)
   const { handovers, createHandover } = useShiftHandovers(hotel?.id)
   const { createTicket } = useMaintenanceTickets(hotel?.id)
+  const { clients: corporateClients } = useCorporateClients(hotel?.id)
+  const bookableClients = corporateClients.filter((c) => c.status === 'inquiry' || c.status === 'confirmed')
 
   return (
     <div className="flex flex-col gap-4">
@@ -30,6 +33,7 @@ export default function FrontDeskDashboard() {
         <QuickBookingForm
           hotelId={hotel?.id}
           rooms={rooms}
+          corporateClients={bookableClients}
           onCreated={refetchBookings}
           onUpdateRoomStatus={updateRoomStatus}
         />
