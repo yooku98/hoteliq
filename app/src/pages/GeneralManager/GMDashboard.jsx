@@ -13,6 +13,7 @@ import BookingSourceChart from '../../components/gm/BookingSourceChart'
 import MaintenanceList from '../../components/gm/MaintenanceList'
 import HandoverLog from '../../components/gm/HandoverLog'
 import CorporateClients from '../../components/gm/CorporateClients'
+import MonthlyReport from '../../components/gm/MonthlyReport'
 
 export default function GMDashboard() {
   const { hotel, staffId } = useTenant()
@@ -51,6 +52,8 @@ export default function GMDashboard() {
         <HandoverLog handovers={handovers} />
         <BookingSourceChart breakdown={sourceBreakdown} loading={past30.loading} />
       </div>
+
+      <MonthlyReport hotelId={hotel?.id} />
     </div>
   )
 }

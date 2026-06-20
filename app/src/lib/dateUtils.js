@@ -23,3 +23,10 @@ export function dateRange(start, end) {
   }
   return dates
 }
+
+// { start, end } ISO dates for a calendar month. `month` is 1-12.
+export function monthRange(year, month) {
+  const start = new Date(year, month - 1, 1)
+  const end = new Date(year, month, 0)
+  return { start: toISODate(start), end: toISODate(end) }
+}

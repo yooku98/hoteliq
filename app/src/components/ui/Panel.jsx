@@ -20,6 +20,7 @@ const BADGE_STYLES = {
   teal: 'bg-teal-light text-teal',
   coral: 'bg-coral-light text-coral',
   green: 'bg-green-light text-green',
+  purple: 'bg-purple-light text-purple',
 }
 
 export function Badge({ tone = 'teal', children }) {
