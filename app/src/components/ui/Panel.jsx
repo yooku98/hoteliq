@@ -1,10 +1,12 @@
 export function Panel({ title, badge, action, children, className = '' }) {
   return (
-    <div className={`bg-card border border-border rounded-xl p-5 ${className}`}>
+    <div
+      className={`bg-card border border-border rounded-xl p-4 sm:p-5 transition-shadow duration-200 hover:shadow-md hover:shadow-black/[0.03] ${className}`}
+    >
       {(title || badge || action) && (
-        <div className="text-[11px] font-semibold uppercase tracking-wider text-ink3 mb-4 flex justify-between items-center">
+        <div className="text-[11px] font-semibold uppercase tracking-wider text-ink3 mb-4 flex flex-wrap justify-between items-center gap-2">
           <span>{title}</span>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {badge}
             {action}
           </div>
@@ -26,7 +28,7 @@ const BADGE_STYLES = {
 export function Badge({ tone = 'teal', children }) {
   return (
     <span
-      className={`text-[10px] font-semibold px-2 py-0.5 rounded-md tracking-wide ${BADGE_STYLES[tone]}`}
+      className={`text-[10px] font-semibold px-2 py-0.5 rounded-md tracking-wide whitespace-nowrap ${BADGE_STYLES[tone]}`}
     >
       {children}
     </span>

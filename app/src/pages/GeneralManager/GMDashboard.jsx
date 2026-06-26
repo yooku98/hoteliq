@@ -33,7 +33,7 @@ export default function GMDashboard() {
     <div className="flex flex-col gap-4">
       <LowOccupancyBanner series={next7.series} />
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <OccupancyChart series={past30.series} loading={past30.loading} />
         <RevenueChart series={past30.series} loading={past30.loading} />
       </div>
@@ -47,7 +47,7 @@ export default function GMDashboard() {
         updateStatus={updateStatus}
       />
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <MaintenanceList tickets={tickets} onUpdateStatus={updateTicketStatus} />
         <HandoverLog handovers={handovers} />
         <BookingSourceChart breakdown={sourceBreakdown} loading={past30.loading} />

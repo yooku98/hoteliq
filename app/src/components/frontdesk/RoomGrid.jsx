@@ -30,7 +30,7 @@ export default function RoomGrid({ rooms, loading, onUpdateStatus, onCreateTicke
     <Panel
       title="Room status"
       badge={
-        <div className="flex gap-1.5">
+        <div className="flex flex-wrap gap-1.5">
           {Object.entries(STATUS_LABEL).map(([key, label]) => (
             <span key={key} className="text-[10px] text-ink3">
               {label} {counts[key] ?? 0}
@@ -42,12 +42,12 @@ export default function RoomGrid({ rooms, loading, onUpdateStatus, onCreateTicke
       {loading ? (
         <div className="text-ink3 text-sm py-6 text-center">Loading rooms…</div>
       ) : (
-        <div className="grid grid-cols-6 sm:grid-cols-8 gap-2">
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
           {rooms.map((room) => (
             <button
               key={room.id}
               onClick={() => setSelectedRoom(room)}
-              className={`border rounded-lg px-2 py-2.5 text-center transition-transform hover:-translate-y-0.5 ${STATUS_STYLES[room.status]}`}
+              className={`border rounded-lg px-2 py-2.5 text-center transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-95 ${STATUS_STYLES[room.status]}`}
             >
               <div className="text-[13px] font-semibold leading-none">{room.room_number}</div>
               <div className="text-[9px] uppercase tracking-wide mt-1 opacity-80">

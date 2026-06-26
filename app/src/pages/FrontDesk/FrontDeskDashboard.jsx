@@ -29,7 +29,7 @@ export default function FrontDeskDashboard() {
         onCreateTicket={(roomId, description) => createTicket(roomId, description, staffId)}
       />
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <QuickBookingForm
           hotelId={hotel?.id}
           rooms={rooms}

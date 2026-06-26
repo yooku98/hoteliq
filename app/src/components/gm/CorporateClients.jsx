@@ -21,7 +21,7 @@ function RecordPayment({ client, onRecordPayment }) {
 
   if (!open) {
     return (
-      <button onClick={() => setOpen(true)} className="text-[11px] text-teal font-medium">
+      <button onClick={() => setOpen(true)} className="text-[11px] text-teal font-medium transition-colors duration-150 hover:text-teal/70">
         Add payment
       </button>
     )
@@ -48,12 +48,12 @@ function RecordPayment({ client, onRecordPayment }) {
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="0.00"
-        className="w-20 border border-border rounded-md px-1.5 py-0.5 text-[11px] focus:outline-none focus:border-teal"
+        className="w-20 border border-border rounded-md px-1.5 py-0.5 text-[11px] bg-white/80 transition-colors duration-150 focus:outline-none focus:border-teal"
       />
-      <button type="submit" disabled={submitting} className="text-[11px] text-teal font-medium">
+      <button type="submit" disabled={submitting} className="text-[11px] text-teal font-medium transition-colors duration-150 hover:text-teal/70">
         Save
       </button>
-      <button type="button" onClick={() => setOpen(false)} className="text-[11px] text-ink3">
+      <button type="button" onClick={() => setOpen(false)} className="text-[11px] text-ink3 transition-colors duration-150 hover:text-ink">
         Cancel
       </button>
     </form>
@@ -81,13 +81,13 @@ export default function CorporateClients({ clients, loading, staffId, createClie
         const visible = expanded ? clients : clients.slice(0, 5)
         return (
           <>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div className="text-[11px] text-ink3">
                 {summary.pipeline} in pipeline · {summary.confirmed} confirmed
               </div>
               <button
                 onClick={() => setShowForm(true)}
-                className="text-[11px] text-teal font-medium"
+                className="text-[11px] text-teal font-medium transition-colors duration-150 hover:text-teal/70"
               >
                 + Log client
               </button>
@@ -106,7 +106,7 @@ export default function CorporateClients({ clients, loading, staffId, createClie
                   return (
                     <div
                       key={c.id}
-                      className="flex items-center justify-between gap-3 py-2.5 border-b border-border last:border-none"
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 py-2.5 border-b border-border last:border-none transition-colors duration-150 hover:bg-surface/40 rounded-md -mx-1 px-1"
                     >
                       <div className="min-w-0">
                         <div className="text-[12px] font-medium text-ink flex items-center gap-2">
@@ -121,18 +121,18 @@ export default function CorporateClients({ clients, loading, staffId, createClie
                           {expanded && c.contact_name && ` · ${c.contact_name}${c.contact_phone ? ` (${c.contact_phone})` : ''}`}
                         </div>
                       </div>
-                      <div className="text-right flex-shrink-0">
+                      <div className="text-left sm:text-right flex-shrink-0">
                         <div className={balance > 0 ? 'text-coral font-semibold text-[12px]' : 'text-green font-semibold text-[12px]'}>
                           {balance > 0 ? `${money(balance)} due` : 'Settled'}
                         </div>
                         <div className="text-ink3 text-[11px] mb-1">
                           {money(c.amount_paid)} of {money(c.total_amount)}
                         </div>
-                        <div className="flex items-center justify-end gap-2">
+                        <div className="flex items-center justify-start sm:justify-end gap-2">
                           {c.status === 'inquiry' && (
                             <button
                               onClick={() => updateStatus(c.id, 'confirmed')}
-                              className="text-[11px] text-teal font-medium"
+                              className="text-[11px] text-teal font-medium transition-colors duration-150 hover:text-teal/70"
                             >
                               Confirm
                             </button>

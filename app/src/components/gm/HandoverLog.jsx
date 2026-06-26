@@ -25,7 +25,7 @@ export default function HandoverLog({ handovers }) {
               return (
                 <div
                   key={h.id}
-                  className="flex items-center justify-between py-2 border-b border-border last:border-none text-[12px]"
+                  className="flex items-center justify-between py-2 border-b border-border last:border-none text-[12px] transition-colors duration-150 hover:bg-surface/40 rounded-md -mx-1 px-1"
                 >
                   <div>
                     <div className="font-medium text-ink">{h.shift_date}</div>

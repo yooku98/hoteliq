@@ -50,16 +50,16 @@ export default function CorporateClientForm({ onClose, onCreate }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-[210] px-4"
+      className="fixed inset-0 bg-black/40 flex items-center justify-center z-[210] px-4 animate-overlay-in"
       onClick={onClose}
     >
       <div
-        className="bg-card rounded-xl border border-border p-5 w-full max-w-[420px]"
+        className="glass-light rounded-2xl p-5 w-full max-w-[420px] max-h-[90vh] overflow-y-auto animate-modal-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-start mb-4">
           <div className="text-[15px] font-semibold text-ink">Log a corporate / group client</div>
-          <button onClick={onClose} className="text-ink3 text-[11px] hover:text-ink">
+          <button onClick={onClose} className="text-ink3 text-[11px] hover:text-ink transition-colors duration-150">
             Close
           </button>
         </div>
@@ -75,7 +75,7 @@ export default function CorporateClientForm({ onClose, onCreate }) {
             />
           </Field>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Contact name">
               <input
                 value={form.contact_name}
@@ -93,7 +93,7 @@ export default function CorporateClientForm({ onClose, onCreate }) {
             </Field>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Purpose">
               <input
                 value={form.purpose}
@@ -112,7 +112,7 @@ export default function CorporateClientForm({ onClose, onCreate }) {
             </Field>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Total agreed (GH₵)">
               <input
                 type="number"
@@ -152,7 +152,7 @@ export default function CorporateClientForm({ onClose, onCreate }) {
           <button
             type="submit"
             disabled={submitting}
-            className="bg-teal text-white text-[12px] font-medium rounded-lg py-2.5 disabled:opacity-50"
+            className="bg-teal text-white text-[12px] font-medium rounded-lg py-2.5 transition-all duration-150 hover:shadow-md hover:bg-teal/90 active:scale-[0.99] disabled:opacity-50"
           >
             {submitting ? 'Logging…' : 'Log client'}
           </button>

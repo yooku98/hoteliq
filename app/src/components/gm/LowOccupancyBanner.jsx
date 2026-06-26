@@ -11,7 +11,7 @@ export default function LowOccupancyBanner({ series, threshold = DEFAULT_THRESHO
   const avg = Math.round(lowDays.reduce((sum, d) => sum + d.occupancyPct, 0) / lowDays.length)
 
   return (
-    <div className="bg-coral-light border border-coral/20 rounded-xl px-5 py-3.5 flex items-start gap-3">
+    <div className="animate-fade-up bg-coral-light/70 backdrop-blur-md border border-coral/20 shadow-sm rounded-xl px-5 py-3.5 flex items-start gap-3">
       <span className="text-coral text-base leading-none mt-0.5">⚠</span>
       <div className="text-[12.5px] text-ink2 leading-relaxed">
         <span className="font-semibold text-coral">

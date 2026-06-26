@@ -42,7 +42,33 @@ body {
 
 @layer components {
   .input {
-    @apply w-full border border-border rounded-lg px-3 py-2 text-[13px] text-ink focus:outline-none focus:border-teal;
+    @apply w-full bg-white/80 border border-border rounded-lg px-3 py-2 text-[13px] text-ink focus:outline-none focus:border-teal transition-colors duration-150;
+  }
+
+  /* Frosted-glass surfaces — reserved for chrome/overlays/feature panels
+     (header, modals, the AI briefing, the login card). Dense data surfaces
+     (charts, tables, lists) stay on solid --color-card for legibility. */
+  .glass-dark {
+    @apply bg-ink/70 backdrop-blur-xl border border-white/10;
+  }
+  .glass-light {
+    @apply bg-white/65 backdrop-blur-2xl border border-white/50 shadow-xl shadow-black/5;
+  }
+
+  /* Smooth height transition for collapsible content (Disclosure), using
+     the grid-template-rows trick — no JS height measurement needed. */
+  .collapse-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 280ms ease;
+  }
+  .collapse-grid.is-open {
+    grid-template-rows: 1fr;
+  }
+  .collapse-grid > * {
+    min-height: 0;
+    overflow: hidden;
   }
 }
 
@@ -54,4 +80,22 @@ body {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.96) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-modal-in {
+  animation: modalIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animate-overlay-in {
+  animation: overlayIn 150ms ease-out;
+}
+.animate-fade-up {
+  animation: fadeUp 400ms ease both;
 }

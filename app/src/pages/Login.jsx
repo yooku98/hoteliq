@@ -21,17 +21,23 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center px-4">
-      <div className="w-full max-w-[380px]">
-        <div className="font-display text-3xl text-ink text-center mb-1">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-10"
+      style={{
+        background:
+          'radial-gradient(circle at 20% 20%, rgba(14,107,107,0.35), transparent 45%), radial-gradient(circle at 85% 80%, rgba(184,134,11,0.25), transparent 45%), #0D0D0D',
+      }}
+    >
+      <div className="w-full max-w-[380px]" style={{ animation: 'fadeUp 500ms ease both' }}>
+        <div className="font-display text-3xl text-white text-center mb-1">
           Hotel<span className="text-gold">IQ</span>
         </div>
-        <p className="text-center text-ink3 text-[12px] tracking-wide uppercase mb-8">
+        <p className="text-center text-white/55 text-[12px] tracking-wide uppercase mb-8">
           Occupancy, revenue &amp; operations
         </p>
         <form
           onSubmit={handleSubmit}
-          className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4"
+          className="glass-light rounded-2xl p-6 sm:p-7 flex flex-col gap-4"
         >
           <div>
             <label className="block text-[11px] font-semibold uppercase tracking-wider text-ink3 mb-1.5">
@@ -63,12 +69,12 @@ export default function Login() {
           <button
             type="submit"
             disabled={submitting}
-            className="bg-ink text-white text-[12px] font-medium tracking-wide rounded-lg py-2.5 mt-1 disabled:opacity-50"
+            className="bg-ink text-white text-[12px] font-medium tracking-wide rounded-lg py-2.5 mt-1 transition-all duration-200 hover:bg-ink/90 hover:shadow-lg active:scale-[0.99] disabled:opacity-50"
           >
             {submitting ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
-        <p className="text-center text-ink3 text-[11px] mt-6">
+        <p className="text-center text-white/45 text-[11px] mt-6">
           Powered by <span className="text-teal font-semibold">HotelIQ</span>
         </p>
       </div>

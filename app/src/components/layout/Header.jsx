@@ -28,16 +28,16 @@ export default function Header() {
   })
 
   return (
-    <header className="bg-ink text-white px-8 h-[60px] flex items-center justify-between sticky top-0 z-[100]">
-      <div className="flex items-center gap-5">
-        <div className="font-display text-[22px] tracking-tight">
+    <header className="glass-dark text-white px-4 sm:px-8 h-[60px] flex items-center justify-between sticky top-0 z-[100]">
+      <div className="flex items-center gap-2.5 sm:gap-5 min-w-0">
+        <div className="font-display text-[20px] sm:text-[22px] tracking-tight flex-shrink-0">
           Hotel<span className="text-gold">IQ</span>
         </div>
         {hasMultipleHotels ? (
           <select
             value={activeMembership?.hotel_id ?? ''}
             onChange={(e) => switchHotel(e.target.value)}
-            className="bg-transparent text-[12px] font-medium text-white/55 uppercase tracking-wider border border-white/15 rounded px-2 py-1"
+            className="bg-transparent text-[11px] sm:text-[12px] font-medium text-white/55 uppercase tracking-wider border border-white/15 rounded px-2 py-1 max-w-[120px] sm:max-w-none truncate transition-colors duration-150 hover:border-white/30 focus:outline-none focus:border-gold/60"
           >
             {hotels.map((h) => (
               <option key={h.id} value={h.id} className="text-ink">
@@ -46,20 +46,21 @@ export default function Header() {
             ))}
           </select>
         ) : (
-          <div className="text-[12px] font-medium text-white/55 uppercase tracking-wider">
+          <div className="text-[11px] sm:text-[12px] font-medium text-white/55 uppercase tracking-wider truncate max-w-[110px] sm:max-w-none">
             {hotel?.name}
           </div>
         )}
       </div>
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-3 sm:gap-5 flex-shrink-0">
         <div className="flex items-center gap-1.5 text-[11px] font-medium text-white/70 tracking-wide">
-          <span className="w-[7px] h-[7px] rounded-full bg-[#4CAF50] animate-pulse" /> Live data
+          <span className="w-[7px] h-[7px] rounded-full bg-[#4CAF50] animate-pulse flex-shrink-0" />
+          <span className="hidden sm:inline">Live data</span>
         </div>
-        <div className="text-[11px] text-white/45">{timeLabel}</div>
-        <div className="text-[11px] text-white/70">{ROLE_LABEL[role] ?? role}</div>
+        <div className="text-[11px] text-white/45 hidden md:block">{timeLabel}</div>
+        <div className="text-[11px] text-white/70 hidden sm:block">{ROLE_LABEL[role] ?? role}</div>
         <button
           onClick={() => signOut()}
-          className="text-[11px] font-medium text-white/55 hover:text-white transition-colors"
+          className="text-[11px] font-medium text-white/55 hover:text-white transition-colors duration-150"
         >
           Sign out
         </button>

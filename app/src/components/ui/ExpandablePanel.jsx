@@ -11,7 +11,7 @@ export function ExpandablePanel({ title, badge, children, className = '' }) {
     <button
       onClick={() => setExpanded(true)}
       title="Expand"
-      className="text-ink3 hover:text-ink text-[13px] leading-none"
+      className="text-ink3 hover:text-ink text-[13px] leading-none transition-colors duration-150"
     >
       ⤢
     </button>
@@ -25,11 +25,11 @@ export function ExpandablePanel({ title, badge, children, className = '' }) {
 
       {expanded && (
         <div
-          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[200] px-4"
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[200] px-4 animate-overlay-in"
           onClick={() => setExpanded(false)}
         >
           <div
-            className="bg-card rounded-xl border border-border p-6 w-full max-w-[920px] max-h-[85vh] overflow-y-auto"
+            className="glass-light rounded-2xl p-4 sm:p-6 w-full max-w-[920px] max-h-[85vh] overflow-y-auto animate-modal-in"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-5">
@@ -39,7 +39,7 @@ export function ExpandablePanel({ title, badge, children, className = '' }) {
               </div>
               <button
                 onClick={() => setExpanded(false)}
-                className="text-ink3 text-[11px] hover:text-ink"
+                className="text-ink3 text-[11px] hover:text-ink transition-colors duration-150"
               >
                 Close
               </button>

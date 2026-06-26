@@ -62,7 +62,7 @@ export default function ReconciliationWidget({ hotelId, staffId, handovers, onCr
         <button
           type="submit"
           disabled={submitting || collected === ''}
-          className="bg-ink text-white text-[12px] font-medium rounded-lg py-2 disabled:opacity-40"
+          className="bg-ink text-white text-[12px] font-medium rounded-lg py-2 transition-all duration-150 hover:shadow-md active:scale-[0.99] disabled:opacity-40"
         >
           {submitting ? 'Logging…' : 'Log end-of-shift handover'}
         </button>
@@ -79,7 +79,7 @@ export default function ReconciliationWidget({ hotelId, staffId, handovers, onCr
           return (
             <div
               key={h.id}
-              className="flex items-center justify-between py-2 border-b border-border last:border-none text-[12px]"
+              className="flex items-center justify-between py-2 border-b border-border last:border-none text-[12px] transition-colors duration-150 hover:bg-surface/60 rounded-md -mx-1 px-1"
             >
               <div>
                 <div className="font-medium text-ink">{h.shift_date}</div>

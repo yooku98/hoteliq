@@ -74,7 +74,7 @@ export default function QuickBookingForm({ hotelId, rooms, corporateClients = []
   return (
     <Panel title="Quick walk-in booking">
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Field label="Guest name">
             <input
               required
@@ -128,7 +128,7 @@ export default function QuickBookingForm({ hotelId, rooms, corporateClients = []
           </Field>
         )}
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Field label="Check-in">
             <input
               type="date"
@@ -150,7 +150,7 @@ export default function QuickBookingForm({ hotelId, rooms, corporateClients = []
           </Field>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Field label="Total amount (GH₵)">
             <input
               type="number"
@@ -182,7 +182,7 @@ export default function QuickBookingForm({ hotelId, rooms, corporateClients = []
         <button
           type="submit"
           disabled={submitting}
-          className="bg-teal text-white text-[12px] font-medium rounded-lg py-2.5 disabled:opacity-50"
+          className="bg-teal text-white text-[12px] font-medium rounded-lg py-2.5 transition-all duration-150 hover:shadow-md hover:bg-teal/90 active:scale-[0.99] disabled:opacity-50"
         >
           {submitting ? 'Booking…' : 'Check in guest'}
         </button>
