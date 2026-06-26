@@ -17,7 +17,7 @@ export default function LowOccupancyBanner({ series, threshold = DEFAULT_THRESHO
         <span className="font-semibold text-coral">
           {lowDays.length} of the next 7 days are projected below {threshold}% occupancy
         </span>{' '}
-        (avg {avg}%): {lowDays.map(formatDay).join(', ')}. Consider a short-stay promotion or a
+        (avg {avg}%): {lowDays.map((d) => formatDay(d.date)).join(', ')}. Consider a short-stay promotion or a
         rate adjustment for these dates to lift demand.
       </div>
     </div>
