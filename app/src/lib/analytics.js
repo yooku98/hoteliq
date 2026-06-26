@@ -33,6 +33,35 @@ export function buildDailySeries(bookings, totalRooms, startDate, endDate) {
   })
 }
 
+// Groups the daily series into calendar months, averaging occupancy across
+// each month's days and summing revenue.
+export function buildMonthlySeries(bookings, totalRooms, startDate, endDate) {
+  const daily = buildDailySeries(bookings, totalRooms, startDate, endDate)
+  const byMonth = new Map()
+
+  for (const day of daily) {
+    const month = day.date.slice(0, 7)
+    if (!byMonth.has(month)) {
+      byMonth.set(month, { month, occupiedRoomDays: 0, days: 0, revenue: 0 })
+    }
+    const entry = byMonth.get(month)
+    entry.occupiedRoomDays += day.occupiedRooms
+    entry.days += 1
+    entry.revenue += day.revenue
+  }
+
+  return Array.from(byMonth.values())
+    .sort((a, b) => a.month.localeCompare(b.month))
+    .map((entry) => ({
+      month: entry.month,
+      revenue: entry.revenue,
+      occupancyPct:
+        totalRooms > 0 && entry.days > 0
+          ? Math.round((entry.occupiedRoomDays / (totalRooms * entry.days)) * 100)
+          : 0,
+    }))
+}
+
 export function bookingSourceBreakdown(bookings) {
   const totals = Object.fromEntries(BOOKING_SOURCES.map((s) => [s, { count: 0, revenue: 0 }]))
   for (const booking of bookings) {

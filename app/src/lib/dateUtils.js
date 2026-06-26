@@ -12,6 +12,17 @@ export function todayISO() {
   return toISODate(new Date())
 }
 
+export function addMonths(date, n) {
+  const d = new Date(date)
+  d.setMonth(d.getMonth() + n)
+  return d
+}
+
+export function startOfMonth(date) {
+  const d = new Date(date)
+  return new Date(d.getFullYear(), d.getMonth(), 1)
+}
+
 // Inclusive list of ISO date strings from start to end.
 export function dateRange(start, end) {
   const dates = []

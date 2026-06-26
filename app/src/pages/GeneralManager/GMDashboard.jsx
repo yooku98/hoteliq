@@ -34,7 +34,12 @@ export default function GMDashboard() {
       <LowOccupancyBanner series={next7.series} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <OccupancyChart series={past30.series} loading={past30.loading} />
+        <OccupancyChart
+          series={past30.series}
+          loading={past30.loading}
+          hotelId={hotel?.id}
+          totalRooms={totalRooms}
+        />
         <RevenueChart series={past30.series} loading={past30.loading} />
       </div>
 
