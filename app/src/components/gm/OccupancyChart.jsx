@@ -82,7 +82,7 @@ export default function OccupancyChart({ series, loading, hotelId, totalRooms })
                   labelFormatter={formatTick}
                   contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #E8E4DC' }}
                 />
-                <Bar dataKey="occupancyPct" fill="#0E6B6B" radius={[3, 3, 0, 0]} />
+                <Bar dataKey="occupancyPct" fill="#0E6B6B" radius={[3, 3, 0, 0]} isAnimationActive={false} />
               </BarChart>
             </ResponsiveContainer>
           </div>

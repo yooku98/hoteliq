@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 /* Design tokens ported from the HotelIQ demo (index.html) — do not change palette. */
@@ -47,9 +46,12 @@ body {
 
   /* Frosted-glass surfaces — reserved for chrome/overlays/feature panels
      (header, modals, the AI briefing, the login card). Dense data surfaces
-     (charts, tables, lists) stay on solid --color-card for legibility. */
+     (charts, tables, lists) stay on solid --color-card for legibility.
+     .glass-dark backs the *sticky* header, which repaints its blur on every
+     scroll frame — kept to a light blur radius (vs. glass-light's 2xl) so
+     scrolling stays smooth on mid-range phones. */
   .glass-dark {
-    @apply bg-ink/70 backdrop-blur-xl border border-white/10;
+    @apply bg-ink/80 backdrop-blur-md border border-white/10;
   }
   .glass-light {
     @apply bg-white/65 backdrop-blur-2xl border border-white/50 shadow-xl shadow-black/5;

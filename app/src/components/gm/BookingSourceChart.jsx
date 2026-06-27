@@ -46,6 +46,7 @@ export default function BookingSourceChart({ breakdown, loading }) {
                     innerRadius="62%"
                     outerRadius="90%"
                     paddingAngle={2}
+                    isAnimationActive={false}
                   >
                     {data.map((d) => (
                       <Cell key={d.source} fill={SOURCE_COLORS[d.source]} />

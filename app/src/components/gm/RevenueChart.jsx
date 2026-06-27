@@ -64,7 +64,7 @@ export default function RevenueChart({ series, loading }) {
                   wrapperStyle={{ fontSize: 11 }}
                 />
                 {Object.keys(METHOD_COLORS).map((method) => (
-                  <Bar key={method} dataKey={method} stackId="rev" fill={METHOD_COLORS[method]} />
+                  <Bar key={method} dataKey={method} stackId="rev" fill={METHOD_COLORS[method]} isAnimationActive={false} />
                 ))}
               </BarChart>
             </ResponsiveContainer>
